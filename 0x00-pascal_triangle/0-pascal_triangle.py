@@ -5,6 +5,9 @@ def pascal_triangle(n):
     Generate Pascal's Triangle up to the nth row
     """
     triangle = []
+    if n <= 0:
+        return triangle
+
     for i in range(n):
         if i == 0:
             triangle.append([1])
