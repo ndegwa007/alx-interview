@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """the pascal's triangle code"""
+
+
 def pascal_triangle(n):
     """
     Generate Pascal's Triangle up to the nth row
     """
     triangle = []
     if n <= 0:
-        return []
+        return triangle
 
     for i in range(n):
         if i == 0:
@@ -19,4 +21,3 @@ def pascal_triangle(n):
             row.append(1)
             triangle.append(row)
     return triangle
-
