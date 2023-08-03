@@ -5,6 +5,8 @@ from collections import deque
 
 def canUnlockAll(boxes):
     """checks if all boxes can be opened"""
+    if len(boxes) == 0:
+        return False
     n = len(boxes)
     visited = [False] * n
     # first box is open
