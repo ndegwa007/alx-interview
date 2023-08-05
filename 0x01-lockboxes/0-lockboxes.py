@@ -17,10 +17,9 @@ def canUnlockAll(boxes):
 
     while queue:
         checked_box = queue.popleft()
-        if checked_box > len(boxes):
-            return False
+
         for key in boxes[checked_box]:
-            if not visited[key]:
+            if 0 <= key < n and not visited[key]:
                 visited[key] = True
                 queue.append(key)
 
