@@ -3,6 +3,7 @@
 module calculates the min operations
 taken to copy and paste a character string
 """
+import sys
 
 
 def minOperations(n: int) -> int:
@@ -11,11 +12,11 @@ def minOperations(n: int) -> int:
     taken to get n chars
     """
 
-    if n == 1:
+    if n == 1 or n < 1:
         return 0
 
     # initialize the string array
-    dp = [0] * (n + 1)
+    dp = [sys.maxsize] * (n + 1)
 
     for i in range(2, n+1):
         dp[i] = i
