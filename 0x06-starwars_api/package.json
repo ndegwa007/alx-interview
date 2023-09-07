@@ -1,0 +1,14 @@
+{
+  "name": "0x06-starwars_api",
+  "version": "1.0.0",
+  "description": "### Script Context Prints all characters in a Star Wars movie",
+  "main": "0-starwars_characters.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request-promise-native": "^1.0.9"
+  }
+}
