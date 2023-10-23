@@ -1,19 +1,29 @@
 #!/usr/bin/python3
-"""bottom-up approach"""
-import sys
+"""Making change module
+"""
 
 
 def makeChange(coins, total):
-    """list  of all possible coins"""
-    if total < 0:
+    """
+    Returns fewest number of coins
+    needed to meet a given total
+    """
+    i = 0
+    numberOfCoins = 0
+
+    coins.sort(reverse=True)
+
+    if total == 0 or total < 0:
         return 0
-    dp = [sys.maxsize] * (total + 1)
-    dp[0] = 0
-    for coin in coins:
-        for amount in range(coin, total+1):
-            if coin <= amount:
-                dp[amount] = min(dp[amount], dp[amount - coin] + 1)
-    if dp[total] == sys.maxsize:
-        return -1
-    else:
-        return dp[total]
+
+    while total > 0:
+        if total / coins[i] > 0:
+            numberOfCoins += int(total / coins[i])
+            total = total % coins[i]
+
+        i += 1
+
+        if i == len(coins) and total > 0:
+            return -1
+
+    return numberOfCoins
