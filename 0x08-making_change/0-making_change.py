@@ -15,7 +15,8 @@ def makeChange(coins, total):
 
     if total == 0 or total < 0:
         return 0
-
+    if len(coins) == 0:
+        return -1
     while total > 0:
         if total / coins[i] > 0:
             numberOfCoins += int(total / coins[i])
