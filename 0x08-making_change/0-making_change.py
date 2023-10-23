@@ -7,10 +7,6 @@ def makeChange(coins, total):
     """list  of all possible coins"""
     if total < 0:
         return 0
-
-    if sum(coins) > total:
-        return -1
-
     dp = [sys.maxsize] * (total + 1)
     dp[0] = 0
     for coin in coins:
