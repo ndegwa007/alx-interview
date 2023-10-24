@@ -1,41 +1,35 @@
-#!/usr/bin/node
-// module has a star wars api
 
-const request = require('request-promise');
-const process = require('process');
-
-function getCharacterName (characterUrl) {
-  return new Promise((resolve, reject) => {
-    request(characterUrl)
-      .then((body) => {
-        const characterData = JSON.parse(body);
-        resolve(characterData.name);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  }
-  );
-}
+const request = require('request');
+const { promisify } = require('util');
+const p = promisify(request);
 
 async function starWars () {
   const movieId = process.argv[2];
-  const url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
+  const api_url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
   try {
-    const filmData = await request(url);
-    const film = JSON.parse(filmData);
+    const filmResponse = await p({ url: api_url, json: true });
+    if (filmResponse.statusCode === 200) {
+      const film = filmResponse.body;
 
-    for (const characterUrl of film.characters) {
-      try {
-        const characterName = await getCharacterName(characterUrl);
-        console.log(`${characterName}`);
-      } catch (characternameError) {
-        console.log(characternameError);
+      for (const characterUrl of film.characters) {
+        try {
+          const characterResponse = await p({ url: characterUrl, json: true });
+          if (characterResponse.statusCode === 200) {
+            const characterName = characterResponse.body.name;
+            console.log(characterName);
+          } else {
+            console.error(`Failed to retrieve character name: ${characterResponse.statusCode}`);
+          }
+        } catch (characterNameError) {
+          console.error(characterNameError);
+        }
       }
+    } else {
+      console.error(`Failed to retrieve film data: ${filmResponse.statusCode}`);
     }
   } catch (filmDataError) {
-    console.log(filmDataError);
+    console.error(filmDataError);
   }
 }
 
