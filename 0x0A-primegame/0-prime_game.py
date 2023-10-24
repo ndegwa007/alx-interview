@@ -4,8 +4,6 @@
 
 def isWinner(x, nums):
     """get winner"""
-    if x <= 0:
-        return None
 
     def is_prime(num):
         """check for primes"""
