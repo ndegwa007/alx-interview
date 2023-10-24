@@ -1,7 +1,7 @@
 #!/usr/bin/node
 // module has a star wars api
 
-const request = require('request-promise-native');
+const request = require('request-promise');
 const process = require('process');
 
 function getCharacterName (characterUrl) {
