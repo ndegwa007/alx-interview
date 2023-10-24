@@ -5,10 +5,10 @@ const p = promisify(request);
 
 async function starWars () {
   const movieId = process.argv[2];
-  const api_url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
+  const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
   try {
-    const filmResponse = await p({ url: api_url, json: true });
+    const filmResponse = await p({ url: apiUrl, json: true });
     if (filmResponse.statusCode === 200) {
       const film = filmResponse.body;
 
