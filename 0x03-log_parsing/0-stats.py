@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """reads stdin line by line and compute metrics"""
 import sys
 # file size check, status_code count, status code arranged in ascending order
