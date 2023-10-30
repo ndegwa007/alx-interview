@@ -23,7 +23,7 @@ def main_log():
             else:
                 status_code_dict[status_code] = 1
             file_size_total += int(file_size)
-            if line_count % 10 == 0:
+            if (line_count+1) % 10 == 0:
                 total += file_size_total
                 print(f"File size: {total}")
                 for k, v in sorted(status_code_dict.items()):
