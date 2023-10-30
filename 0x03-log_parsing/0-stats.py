@@ -7,15 +7,17 @@ import sys
 def main_log():
     """compute stats in each line"""
     file_size_total = 0
-    line_count = -1
+    line_count = 0
     status_code_dict = {}
     total = 0
+
+   
+
     try:
         for line in sys.stdin:
             line = line.split(' ')
-            if len(line) == 0:
-                print('File size: 0')
-            line_count += 1
+            line_count +=1
+
             file_size = line[len(line)-1]
             status_code = line[len(line)-2]
             if status_code in status_code_dict:
@@ -23,7 +25,7 @@ def main_log():
             else:
                 status_code_dict[status_code] = 1
             file_size_total += int(file_size)
-            if line_count % 9 == 0:
+            if line_count % 10 == 0:
                 total += file_size_total
                 print(f"File size: {total}")
                 for k, v in sorted(status_code_dict.items()):
